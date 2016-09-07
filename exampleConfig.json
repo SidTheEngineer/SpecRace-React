@@ -1,0 +1,5 @@
+{
+    "exampleApiKey": "1234ABCD",
+    "vehicleUrlStart": "http://api.edmunds.com/api/vehicle/v2/",
+    "trimUrlEnding": "/styles?view=basic&fmt=json&api_key="
+}
