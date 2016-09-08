@@ -4,7 +4,7 @@ import MakeButtons from './middleComponents/buttons/MakeButtons'
 import ModelButtons from './middleComponents/buttons/ModelButtons'
 import YearButtons from './middleComponents/buttons/YearButtons'
 import TrimButtons from './middleComponents/buttons/TrimButtons'
-import config from '!json!../../config' // API keys and URLs.
+import config from '!json!../../config' // API keys and URLs, this will not be used in production.
 
 class Middle extends Component {
 
