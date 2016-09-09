@@ -23,13 +23,13 @@ let page = (state = initialState, action) => {
                 loading: false
             })
 
-        case 'SUCCESSFUL_MAKES_CALL':
+        case 'RECEIVED_MAKES':
             return Object.assign({}, state, {
                 loading: false,
                 currentPage: 'makes'
             })
 
-        case 'SUCCESSFUL_TRIMS_CALL':
+        case 'RECEIVED_TRIMS':
             return Object.assign({}, state, {
                 loading: false,
                 currentPage: 'trims'

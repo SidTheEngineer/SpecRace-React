@@ -9,11 +9,11 @@ import config from '!json!../../config' // API keys and URLs, this will not be u
 class Middle extends Component {
 
     fetchModels(event) {
-        this.props.modelActions.fetchModels(event.target.value)
+        this.props.fetchActions.fetchModels(event.target.value)
     }
 
     fetchYears(event) {
-        this.props.yearActions.fetchYears(event.target.value)
+        this.props.fetchActions.fetchYears(event.target.value)
     }
 
     fetchTrims(event) {
@@ -25,12 +25,12 @@ class Middle extends Component {
                         + config.trimUrlEnding
                         + config.apiKey
 
-        this.props.trimActions.fetchTrims(trimUrl)
+        this.props.fetchActions.fetchTrims(trimUrl)
 
     }
 
     chooseTrim(event) {
-        console.log(event.target)
+        console.log(event.target.value)
     }
 
     render() {

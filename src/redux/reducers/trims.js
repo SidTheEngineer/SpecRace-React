@@ -4,7 +4,7 @@ const initialTrimsState = {
 
 let trims = (state = initialTrimsState, action) => {
     switch(action.type) {
-        case 'SUCCESSFUL_TRIMS_CALL':
+        case 'RECEIVED_TRIMS':
             return Object.assign({}, state, {
                 trims: action.trims
             })

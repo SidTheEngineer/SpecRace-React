@@ -5,7 +5,7 @@ const initialMakesState = {
 let makes = (state = initialMakesState, action) => {
     switch(action.type) {
 
-        case 'SUCCESSFUL_MAKES_CALL':
+        case 'RECEIVED_MAKES':
             // Return the new state/store
             return Object.assign({}, state, {
                 makes: action.makes,
