@@ -4,7 +4,6 @@ const FAILED_CALL = 'FAILED_CALL'
 export let pendingCall = () => {
     return {
         type: PENDING_CALL,
-        loading: true
     }
 }
 

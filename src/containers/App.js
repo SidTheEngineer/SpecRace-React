@@ -44,7 +44,7 @@ let mapStateToProps = state => state
 
 // Binds dispatch to action creators and maps these callable
 // actions to props through the connect function.
-function mapDispatchToProps(dispatch) {
+let mapDispatchToProps = (dispatch) => {
   return {
     fetchActions: bindActionCreators(fetchActions, dispatch)
   }

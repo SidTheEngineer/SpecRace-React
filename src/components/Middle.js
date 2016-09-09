@@ -4,7 +4,7 @@ import MakeButtons from './middleComponents/buttons/MakeButtons'
 import ModelButtons from './middleComponents/buttons/ModelButtons'
 import YearButtons from './middleComponents/buttons/YearButtons'
 import TrimButtons from './middleComponents/buttons/TrimButtons'
-import config from '!json!../../config' // API keys and URLs, this will not be used in production.
+import config from '!json!../../config'
 
 class Middle extends Component {
 
@@ -17,10 +17,10 @@ class Middle extends Component {
     }
 
     fetchTrims(event) {
-        let make = this.props.models.selectedMake
-        let model = this.props.years.selectedModel
-        let selectedYear = event.target.value
-        let trimUrl = config.vehicleUrlStart
+        let make = this.props.models.selectedMake,
+            model = this.props.years.selectedModel,
+            selectedYear = event.target.value,
+            trimUrl = config.vehicleUrlStart
                         + [make, model, selectedYear].join('/')
                         + config.trimUrlEnding
                         + config.apiKey

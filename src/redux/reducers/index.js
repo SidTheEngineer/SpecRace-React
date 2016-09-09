@@ -1,37 +1,31 @@
 import { combineReducers } from 'redux'
-import makes from './makes'
-import models from './models'
-import years from './years'
-import trims from './trims'
+import * as receivedReducers from './received'
 
 // General page stuff
 const initialState = {
     currentPage: '',
-    loading: false
+    failedApiCall: false
 }
 
 let page = (state = initialState, action) => {
     switch(action.type) {
         case 'PENDING_CALL':
             return Object.assign({}, state, {
-                loading: true,
                 currentPage: ''
             })
 
         case 'FAILED_CALL':
             return Object.assign({}, state, {
-                loading: false
+                failedApiCall: true
             })
 
         case 'RECEIVED_MAKES':
             return Object.assign({}, state, {
-                loading: false,
                 currentPage: 'makes'
             })
 
         case 'RECEIVED_TRIMS':
             return Object.assign({}, state, {
-                loading: false,
                 currentPage: 'trims'
             })
 
@@ -51,11 +45,12 @@ let page = (state = initialState, action) => {
 }
 
 const rootReducer = combineReducers({
-    makes,
-    models,
-    years,
-    trims,
-    page
+    page,
+    makes: receivedReducers.makes,
+    models: receivedReducers.models,
+    years: receivedReducers.years,
+    trims: receivedReducers.trims
+
 })
 
 export default rootReducer
