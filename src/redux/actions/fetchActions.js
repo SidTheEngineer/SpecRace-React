@@ -2,7 +2,10 @@ import axios from 'axios'
 import * as apiActions from './apiActions'
 import * as receiveActions from './receiveActions'
 
-// Fetch makes from external API.
+// These are all pretty much Redux-Thunk oriented action creators that
+// make calls to the external API and dispatch other actions around
+// These calls
+
 export let fetchMakes = (url) => {
     return (dispatch) => {
         dispatch(apiActions.pendingCall())
@@ -17,8 +20,6 @@ export let fetchMakes = (url) => {
 }
 
 export let fetchModels = (selectedMake) => {
-
-    // Redux-Thunk function gets passed dispatch and getState().
     return (dispatch, getState) => {
         const state = getState()
         let make = state.makes.makes.filter((make) => {
@@ -38,7 +39,6 @@ export let fetchYears = (selectedModel) => {
     }
 }
 
-// Fetch trims from external API.
 export let fetchTrims = (url) => {
     return (dispatch) => {
         dispatch(apiActions.pendingCall)

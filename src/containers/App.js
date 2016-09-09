@@ -6,8 +6,9 @@ import Head from '../components/Head'
 import Middle from '../components/Middle'
 import Foot from '../components/Foot'
 import * as fetchActions from '../redux/actions/fetchActions'
+import config from '!json!../../config'
 
-const makesUrl = 'http://api.edmunds.com/api/vehicle/v2/makes?view=basic&fmt=json&api_key=5h4yrh4c656sjh4dmrbc8rsm'
+const makesUrl = config.vehicleUrlStart + 'makes?view=basic&fmt=json&api_key=' + config.apiKey
 
 class App extends Component {
 
