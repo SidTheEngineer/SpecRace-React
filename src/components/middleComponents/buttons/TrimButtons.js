@@ -9,7 +9,7 @@ class TrimButtons extends Component {
                     this.props.trims.map((trim) => {
                         return(
                             <div key={trim.name} className="col-xs-12 col-md-6">
-                                <button value={trim.id} onClick={this.props.chooseTrim}>{trim.name}</button>
+                                <button value={trim.id} onClick={this.props.fetchSpecs}>{trim.name}</button>
                             </div>
                         )
                     })

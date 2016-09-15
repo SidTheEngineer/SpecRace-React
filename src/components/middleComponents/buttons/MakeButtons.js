@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 
 class MakeButton extends Component {
 
@@ -9,7 +10,7 @@ class MakeButton extends Component {
                     this.props.makes.map((make) => {
                         return(
                             <div key={make.niceName} className="col-xs-6 col-sm-3 col-md-2">
-                                <button value={make.niceName} onClick={this.props.fetchModels}>{make.name}</button>
+                                <Link to={`${make.niceName}`}><button value={make.niceName} onClick={this.props.fetchModels}>{make.name}</button></Link>
                             </div>
                         )
                     })

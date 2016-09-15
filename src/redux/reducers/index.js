@@ -1,17 +1,20 @@
 import { combineReducers } from 'redux'
+import { routerReducer } from 'react-router-redux'
 import * as receivedReducers from './received'
 
 // General page stuff
 const initialState = {
     currentPage: '',
-    failedApiCall: false
+    failedApiCall: false,
+    loading: false
 }
 
 let page = (state = initialState, action) => {
     switch(action.type) {
         case 'PENDING_CALL':
             return Object.assign({}, state, {
-                currentPage: ''
+                currentPage: '',
+                loading: action.loading
             })
 
         case 'FAILED_CALL':
@@ -21,12 +24,14 @@ let page = (state = initialState, action) => {
 
         case 'RECEIVED_MAKES':
             return Object.assign({}, state, {
-                currentPage: 'makes'
+                currentPage: 'makes',
+                loading: action.loading
             })
 
         case 'RECEIVED_TRIMS':
             return Object.assign({}, state, {
-                currentPage: 'trims'
+                currentPage: 'trims',
+                loading: action.loading
             })
 
         case 'RECEIVED_MODELS':
@@ -49,7 +54,8 @@ const rootReducer = combineReducers({
     makes: receivedReducers.makes,
     models: receivedReducers.models,
     years: receivedReducers.years,
-    trims: receivedReducers.trims
+    trims: receivedReducers.trims,
+    routing: routerReducer
 
 })
 

@@ -41,13 +41,13 @@ export let fetchYears = (selectedModel) => {
 
 export let fetchTrims = (url) => {
     return (dispatch) => {
-        dispatch(apiActions.pendingCall)
+        dispatch(apiActions.pendingCall())
         axios.get(url)
             .then((response) => {
                 dispatch(receiveActions.receivedTrims(response))
             })
             .catch((error) => {
-                dispatch(apiActions.failedCall)
+                dispatch(apiActions.failedCall())
             })
         }
 }

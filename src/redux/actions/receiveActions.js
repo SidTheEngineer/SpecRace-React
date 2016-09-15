@@ -6,7 +6,8 @@ const RECEIVED_TRIMS = 'RECEIVED_TRIMS'
 export let receivedMakes = (response) => {
     return {
         type: RECEIVED_MAKES,
-        makes: response.data.makes
+        makes: response.data.makes,
+        loading: false
     }
 }
 
@@ -29,6 +30,7 @@ export let receivedYears = (selectedModel, years) => {
 export let receivedTrims = (response) => {
     return {
         type: RECEIVED_TRIMS,
-        trims: response.data.styles
+        trims: response.data.styles,
+        loading: false
     }
 }

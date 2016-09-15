@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import '../App.css'
+import '../styles/App.css'
 import Head from '../components/Head'
 import Middle from '../components/Middle'
 import Foot from '../components/Foot'
+import LoadingSpinner from '../components/middleComponents/LoadingSpinner'
 import * as fetchActions from '../redux/actions/fetchActions'
 import config from '!json!../../config'
 
@@ -12,29 +13,43 @@ const makesUrl = config.vehicleUrlStart + 'makes?view=basic&fmt=json&api_key=' +
 
 class App extends Component {
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchActions.fetchMakes(makesUrl)
   }
 
   render() {
-    return (
-      <div className="App">
+    if(!this.props.page.loading) {
+      return (
+        <div className="App">
+          <div>
+            <Head />
+              <div className="middle container">
+                {React.cloneElement(this.props.children, {
+                  page: this.props.page,
+                  makes: this.props.makes,
+                  models: this.props.models,
+                  years: this.props.years,
+                  trims: this.props.trims,
+                  fetchActions: this.props.fetchActions
+                })}
+              </div>
+            <Foot />
+          </div>
+        </div>
+      )
+    }
+    else {
+      return(
         <div>
           <Head />
-          <div className="middle container">
-            <Middle 
-              fetchActions={this.props.fetchActions}
-              makes={this.props.makes} 
-              models={this.props.models}
-              years={this.props.years}
-              trims={this.props.trims} 
-              page={this.props.page}     
-            />
-          </div>
+            <div className="middle container">
+              <LoadingSpinner />
+            </div>
           <Foot />
         </div>
-      </div>
-    );
+      )
+    }
+
   }
 }
 
