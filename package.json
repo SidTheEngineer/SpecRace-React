@@ -51,13 +51,16 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.7.0",
     "react-router-redux": "^4.0.5",
+    "react-scripts": "^0.4.3",
     "redux": "^3.5.2",
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0"
   },
   "scripts": {
-    "start": "node ./scripts/start.js",
-    "build": "node ./scripts/build.js"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "./config/eslint.js"
