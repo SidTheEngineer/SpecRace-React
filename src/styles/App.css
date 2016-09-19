@@ -90,6 +90,34 @@ button:focus, button:hover, button:active, button.mobileActive{
 	text-shadow: 7px 7px 10px black;
 }
 
+/*======= SPECS PAGE ========*/
+.specGrid{
+	padding-top: 150px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.specTable{
+	background-color: rgba(80, 80, 80, 0.5);
+	min-height: 600px;
+}
+
+.specTable h1, h3{
+	color: lightgray;
+	font-family: 'Oswald', sans-serif;
+	text-align: center;
+	word-wrap: break-word;
+	hyphens: auto;
+	text-shadow: 3px 3px 6px black;
+}
+
+#specList {min-height: 75%; width: 100%;}
+#specList div{width: 100%; min-height: 80px; border-bottom: solid;}
+.specTable h3{text-align: center;}
+.specTable #specList{padding-top: 20px;}
+.specName{width: 50%;}
+.spec{color: green;}
+
 /*==== STARTING STATE OF ANIMATION ====*/
 .fade-enter {
 	opacity: 0;

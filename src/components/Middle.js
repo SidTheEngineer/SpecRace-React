@@ -1,9 +1,4 @@
 import React, { Component } from 'react'
-import Makes from './Makes'
-import Models from './Models'
-import Years from './Years'
-import Trims from './Trims'
-import LoadingSpinner from './middleComponents/LoadingSpinner'
 
 class Middle extends Component {
     render() {

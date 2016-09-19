@@ -6,7 +6,7 @@ import * as receiveActions from './receiveActions'
 // make calls to the external API and dispatch other actions around
 // These calls
 
-export let fetchMakes = (url) => {
+export const fetchMakes = (url) => {
     return (dispatch) => {
         dispatch(apiActions.pendingCall())
         axios.get(url)
@@ -19,7 +19,7 @@ export let fetchMakes = (url) => {
     }
 }
 
-export let fetchModels = (selectedMake) => {
+export const fetchModels = (selectedMake) => {
     return (dispatch, getState) => {
         const state = getState()
         let make = state.makes.makes.filter((make) => {
@@ -29,7 +29,7 @@ export let fetchModels = (selectedMake) => {
     }
 }
 
-export let fetchYears = (selectedModel) => {
+export const fetchYears = (selectedModel) => {
     return (dispatch, getState) => {
         const state = getState()
         let model = state.models.models.filter((model) => {
@@ -39,7 +39,7 @@ export let fetchYears = (selectedModel) => {
     }
 }
 
-export let fetchTrims = (url) => {
+export const fetchTrims = (url) => {
     return (dispatch) => {
         dispatch(apiActions.pendingCall())
         axios.get(url)
@@ -50,4 +50,17 @@ export let fetchTrims = (url) => {
                 dispatch(apiActions.failedCall())
             })
         }
+}
+
+export const fetchSpecs = (url) => {
+    return (dispatch) => {
+        dispatch(apiActions.pendingCall())
+        axios.get(url)
+            .then((response) => {
+
+            })
+            .catch((error) => {
+                
+            })
+    }
 }

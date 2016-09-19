@@ -17,3 +17,8 @@ export const years = {
 export const trims = {
     trims: []
 }
+
+export const specs = {
+    specs: [],
+    equipment: []
+}

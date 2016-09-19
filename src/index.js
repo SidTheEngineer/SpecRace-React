@@ -11,10 +11,8 @@ import Models from './components/Models'
 import Middle from './components/Middle'
 import Years from './components/Years'
 import Trims from './components/Trims'
-import MakeButtons from './components/middleComponents/buttons/MakeButtons'
-import ModelButtons from './components/middleComponents/buttons/ModelButtons'
-import YearButtons from './components/middleComponents/buttons/YearButtons'
-import TrimButtons from './components/middleComponents/buttons/TrimButtons'
+import SpecTable from './components/SpecTable'
+
 
 const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
@@ -25,10 +23,15 @@ ReactDOM.render(
       <Route path="/" component={App}>
         <IndexRedirect to="/home" />
         <Route path="home" component={Middle}>
+          {/*
+            These are the components that will be rendered in the middle div,
+            depending on the route (via this.props.children)
+           */}
           <IndexRoute component={Makes} />
           <Route path="/:make" component={Models} />
           <Route path="/:make/:model" component={Years} />
           <Route path="/:make/:model/:year" component={Trims} />
+          <Route path="/:make/:model/:year/specs" component={SpecTable} />
         </Route>
       </Route>
     </Router>
