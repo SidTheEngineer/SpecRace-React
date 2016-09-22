@@ -11,7 +11,7 @@ class YearButtons extends Component {
                     yearsNewToOld.map((year) => {
                         return(
                             <div key={year.year} className="col-xs-4 col-sm-3 col-md-2">
-                                <Link to={`/${this.props.params.make}/${this.props.params.model}/${year.year}`}>
+                                <Link to={`/search/${this.props.params.make}/${this.props.params.model}/${year.year}`}>
                                     <button value={year.year} onClick={this.props.fetchTrims}>{year.year}</button>
                                 </Link>
                             </div>

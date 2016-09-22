@@ -11,7 +11,9 @@ export const fetchMakes = (url) => {
         dispatch(apiActions.pendingCall())
         axios.get(url)
             .then((response) => {
-                dispatch(receiveActions.receivedMakes(response))
+                // Response.data will contain the array of makes that was sent
+                // from server-side.
+                dispatch(receiveActions.receivedMakes(response.data))
             })
             .catch((error) => {
                 dispatch(apiActions.failedCall())

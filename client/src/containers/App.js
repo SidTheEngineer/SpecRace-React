@@ -6,14 +6,15 @@ import Head from '../components/Head'
 import Foot from '../components/Foot'
 import LoadingSpinner from '../components/middleComponents/LoadingSpinner'
 import * as fetchActions from '../redux/actions/fetchActions'
-import config from '!json!../../config'
 
-const makesUrl = config.vehicleUrlStart + 'makes?view=basic&fmt=json&api_key=' + config.apiKey
+// Backend URL.
+const apiMakesUrl = '/api/makes'
 
 class App extends Component {
 
   componentWillMount() {
-    this.props.fetchActions.fetchMakes(makesUrl)
+    // Fetch makes from the backend.
+    this.props.fetchActions.fetchMakes(apiMakesUrl)
   }
 
   render() {

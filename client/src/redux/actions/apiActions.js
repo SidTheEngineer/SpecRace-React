@@ -10,6 +10,7 @@ export let pendingCall = () => {
 
 export let failedCall = () => {
     return {
-        type: FAILED_CALL
+        type: FAILED_CALL,
+        loading: false
     }
 }

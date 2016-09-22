@@ -4,10 +4,10 @@ const RECEIVED_YEARS = 'RECEIVED_YEARS'
 const RECEIVED_TRIMS = 'RECEIVED_TRIMS'
 const RECEIVED_SPECS = 'RECEIVED_SPECS'
 
-export const receivedMakes = (response) => {
+export const receivedMakes = (makes) => {
     return {
         type: RECEIVED_MAKES,
-        makes: response.data.makes,
+        makes: makes,
         loading: false
     }
 }
