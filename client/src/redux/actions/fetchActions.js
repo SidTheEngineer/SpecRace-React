@@ -46,7 +46,7 @@ export const fetchTrims = (url) => {
         dispatch(apiActions.pendingCall())
         axios.get(url)
             .then((response) => {
-                dispatch(receiveActions.receivedTrims(response))
+                dispatch(receiveActions.receivedTrims(response.data))
             })
             .catch((error) => {
                 dispatch(apiActions.failedCall())

@@ -7,7 +7,7 @@ const RECEIVED_SPECS = 'RECEIVED_SPECS'
 export const receivedMakes = (makes) => {
     return {
         type: RECEIVED_MAKES,
-        makes: makes,
+        makes,
         loading: false
     }
 }
@@ -28,10 +28,10 @@ export const receivedYears = (selectedModel, years) => {
     }
 }
 
-export const receivedTrims = (response) => {
+export const receivedTrims = (trims) => {
     return {
         type: RECEIVED_TRIMS,
-        trims: response.data.styles,
+        trims,
         loading: false
     }
 }

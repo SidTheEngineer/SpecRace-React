@@ -1,6 +1,6 @@
 import express from 'express'
 import axios from 'axios'
-import config from '../config'
+import config from '../config' // Path from folder where transpiled.
 
 const app = express()
 const PORT = 3001
@@ -9,7 +9,7 @@ let apiKey = config.apiKey
 let vehicleUrlStart = config.vehicleUrlStart
 let makesUrl = vehicleUrlStart + 'makes?view=basic&fmt=json&api_key=' + apiKey
 
-app.get('/', (req, res) => {
+app.get('/test', (req, res) => {
     res.send("TESTING")
 })
 
@@ -34,7 +34,8 @@ app.get('/api/:make/:model/:year', (req, res) => {
 
     axios.get(trimsUrl)
         .then((response) => {
-            res.send(response.data.styles)
+            // Send trims to client as JSON.
+            res.json(response.data.styles)
         })
         .catch((error) => {
             res.send(error)

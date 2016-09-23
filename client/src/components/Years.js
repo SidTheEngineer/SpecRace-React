@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ButtonGrid from './middleComponents/ButtonGrid'
 import YearButtons from './middleComponents/buttons/YearButtons'
-import config from '!json!../../config'
 
 class Years extends Component {
 
@@ -9,13 +8,10 @@ class Years extends Component {
         let make = this.props.models.selectedMake,
             model = this.props.years.selectedModel,
             selectedYear = event.target.value,
-            trimUrl = config.vehicleUrlStart
-                        + [make, model, selectedYear].join('/')
-                        + config.trimUrlEnding
-                        + config.apiKey
+            trimUrl = '/api/' + [make, model, selectedYear].join('/')
+            console.log(trimUrl)
 
         this.props.fetchActions.fetchTrims(trimUrl)
-
     }
 
     render() {
