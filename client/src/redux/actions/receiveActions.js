@@ -36,9 +36,10 @@ export const receivedTrims = (trims) => {
     }
 }
 
-export const receivedSpecs = (response) => {
+export const receivedSpecs = (specs) => {
     return {
         type: RECEIVED_SPECS,
-        
+        specs,
+        loading: false
     }
 }

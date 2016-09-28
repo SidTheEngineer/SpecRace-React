@@ -43,6 +43,12 @@ let page = (state = initialState, action) => {
             return Object.assign({}, state, {
                 currentPage: 'years'
             })
+
+        case 'RECEIVED_SPECS':
+            return Object.assign({}, state, {
+                currentPage: 'specs',
+                loading: action.loading
+            })
         
         default:
             return state
@@ -55,6 +61,7 @@ const rootReducer = combineReducers({
     models: receivedReducers.models,
     years: receivedReducers.years,
     trims: receivedReducers.trims,
+    specs: receivedReducers.specs,
     routing: routerReducer
 
 })

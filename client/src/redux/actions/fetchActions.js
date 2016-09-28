@@ -59,10 +59,10 @@ export const fetchSpecs = (url) => {
         dispatch(apiActions.pendingCall())
         axios.get(url)
             .then((response) => {
-
+                dispatch(receiveActions.receivedSpecs(response.data))
             })
             .catch((error) => {
-                
+                dispatch(apiActions.failedCall())
             })
     }
 }

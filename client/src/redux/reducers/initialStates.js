@@ -1,5 +1,11 @@
 // Pieces of state to be used for their respective reducers.
 
+export const initialPage = {
+    currentPage: '',
+    failedApiCall: false,
+    loading: false
+}
+
 export const makes = {
     makes: []
 }

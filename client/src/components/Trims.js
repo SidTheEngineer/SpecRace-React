@@ -5,7 +5,9 @@ import TrimButtons from './middleComponents/buttons/TrimButtons'
 class Trims extends Component {
 
     fetchSpecs(event) {
-        let trimId = event.target.value
+        let trimId = event.target.value   
+        let specsUrl = '/api/' + trimId
+        this.props.fetchActions.fetchSpecs(specsUrl)
     }
 
     render() {

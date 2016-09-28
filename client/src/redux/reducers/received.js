@@ -52,3 +52,15 @@ export let trims = (state = initialStates.trims, action) => {
             return state
     }
 }
+
+export let specs = (state = initialStates.specs, action) => {
+    switch(action.type) {
+        case 'RECEIVED_SPECS':
+            return Object.assign({}, state, {
+                specs: action.specs,
+            })
+
+        default:
+            return state
+    }
+}

@@ -25,7 +25,7 @@ app.get('/api/makes', (req, res) => {
         })
 })
 
-// Retrieve trims from Edmunds based on selected make, model and year.
+// Retrieve trims from Edmunds based on selected make, model, and year.
 app.get('/api/:make/:model/:year', (req, res) => {
     let trimsUrl = config.vehicleUrlStart 
         + [req.params.make, req.params.model, req.params.year].join('/')
@@ -42,10 +42,28 @@ app.get('/api/:make/:model/:year', (req, res) => {
         })
 })
 
+// Retrieve specs from Edmunds based on selected trim.
+app.get('/api/:trimId', (req, res) => {
+    let specsUrl = config.vehicleUrlStart
+        + 'styles/'
+        + req.params.trimId
+        + config.specsUrlEnding
+        + config.apiKey
+
+    axios.get(specsUrl)
+        .then((response) => {
+            res.json(response.data)
+        })
+        .catch((error) => {
+            res.send(error)
+        })
+    
+})
+
 app.listen(PORT, () => {
     console.log(
         '------------------------------\n'
-        + 'Server listening on port ' + PORT
+        + 'All systems are a GO on port ' + PORT
         + '\n------------------------------'
     )
 })
