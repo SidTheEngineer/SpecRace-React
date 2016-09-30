@@ -58,7 +58,7 @@ export let specs = (state = initialStates.specs, action) => {
         case 'RECEIVED_SPECS':
             return Object.assign({}, state, {
                 specs: action.specs.specs,
-                equipment: action.specs.equipment.equipment[0].attributes
+                equipment: action.specs.equipment
             })
 
         default:

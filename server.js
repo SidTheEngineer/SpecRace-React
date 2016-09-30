@@ -61,16 +61,25 @@ app.get('/api/:trimId', (req, res) => {
 
     axios.all([getSpecs(specsUrl), getEquipment(equipmentUrl)])
         .then(axios.spread((specs, equipment) => {
-            res.send({specs: specs.data, equipment: equipment.data})
-        }))
 
-    /*axios.get(specsUrl)
-        .then((response) => {
-            res.json(response.data)
-        })
+            let tempEquipment
+
+            // Check if the vehicle has equipment available for it.
+            try {
+                tempEquipment = equipment.data.equipment[0].attributes
+            }
+            catch(error) {
+                tempEquipment = null
+            }
+
+            res.send({
+                specs: specs.data,
+                equipment: tempEquipment
+            })
+        }))
         .catch((error) => {
             res.send(error)
-        })*/
+        })
     
 })
 

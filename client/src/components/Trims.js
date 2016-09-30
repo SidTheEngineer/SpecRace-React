@@ -14,6 +14,7 @@ class Trims extends Component {
         return(
             <ButtonGrid>
                 <TrimButtons
+                    params={this.props.params}
                     trims={this.props.trims.trims}
                     fetchSpecs={this.fetchSpecs.bind(this)}
                 />   

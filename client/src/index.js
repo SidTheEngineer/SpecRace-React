@@ -31,7 +31,7 @@ ReactDOM.render(
           <Route path="/search/:make" component={Models} />
           <Route path="/search/:make/:model" component={Years} />
           <Route path="/search/:make/:model/:year" component={Trims} />
-          <Route path="/search/:make/:model/:year/specs" component={SpecTable} />
+          <Route path="/search/:make/:model/:year/:trimId" component={SpecTable} />
         </Route>
       </Route>
     </Router>

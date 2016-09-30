@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import Spec from './Spec'
 
 class Specs extends Component {
+
+    findSpecs() {
+        
+    }
+
     render() {
         return(
             <div className="specGrid row">
