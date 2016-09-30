@@ -42,7 +42,7 @@ app.get('/api/:make/:model/:year', (req, res) => {
         })
 })
 
-// Retrieve specs from Edmunds based on selected trim.
+// Retrieve specs and equipment via selected trim's ID.
 app.get('/api/:trimId', (req, res) => {
     let specsUrl = config.vehicleUrlStart
         + 'styles/'
@@ -50,13 +50,27 @@ app.get('/api/:trimId', (req, res) => {
         + config.specsUrlEnding
         + config.apiKey
 
-    axios.get(specsUrl)
+    let equipmentUrl = config.vehicleUrlStart
+        + 'styles/'
+        + req.params.trimId
+        + config.equipmentUrlEnding
+        + config.apiKey
+
+    let getSpecs = (specsUrl) => axios.get(specsUrl)
+    let getEquipment = (equipmentUrl) => axios.get(equipmentUrl)
+
+    axios.all([getSpecs(specsUrl), getEquipment(equipmentUrl)])
+        .then(axios.spread((specs, equipment) => {
+            res.send({specs: specs.data, equipment: equipment.data})
+        }))
+
+    /*axios.get(specsUrl)
         .then((response) => {
             res.json(response.data)
         })
         .catch((error) => {
             res.send(error)
-        })
+        })*/
     
 })
 
