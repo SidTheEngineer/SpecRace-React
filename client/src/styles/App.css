@@ -118,6 +118,20 @@ button:focus, button:hover, button:active, button.mobileActive{
 .specName{width: 50%;}
 .spec{color: green;}
 
+@media (max-width: 600px){
+	.head{min-height: 5em;}
+	.logo{font-size: 32pt;}
+	.specTable h1{font-size: 18pt;}
+	.specTable h3{font-size: 13pt;}
+	.buttonGrid{
+		padding-top: 7em;
+		margin-bottom: 40px;
+	}
+	.specGrid{
+		padding-top: 100px;
+	}
+}
+
 /*==== STARTING STATE OF ANIMATION ====*/
 .fade-enter {
 	opacity: 0;

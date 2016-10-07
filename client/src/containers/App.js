@@ -30,6 +30,7 @@ class App extends Component {
                   models: this.props.models,
                   years: this.props.years,
                   trims: this.props.trims,
+                  specs: this.props.specs,
                   fetchActions: this.props.fetchActions
                 })}
               </div>
