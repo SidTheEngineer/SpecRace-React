@@ -111,8 +111,8 @@ button:focus, button:hover, button:active, button.mobileActive{
 	text-shadow: 3px 3px 6px black;
 }
 
-#specList {min-height: 75%; width: 100%;}
-#specList div{width: 100%; min-height: 80px; border-bottom: solid;}
+.specList {min-height: 75%; width: 100%;}
+.specList div{width: 100%; min-height: 80px; border-bottom: solid;}
 .specTable h3{text-align: center;}
 .specTable #specList{padding-top: 20px;}
 .specName{width: 50%;}

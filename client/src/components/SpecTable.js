@@ -21,7 +21,7 @@ class Specs extends Component {
             },
             zeroToSixty: {
                 name: '0-60',
-                spec: ''
+                spec: helpers.setWeightAndZeroToSixty(this.props.specs.equipment)[1]
             },
             transmission: {
                 name: 'Transmission',
@@ -29,7 +29,7 @@ class Specs extends Component {
             },  
             weight: {
                 name: 'Weight',
-                spec: ''
+                spec: helpers.setWeightAndZeroToSixty(this.props.specs.equipment)[0]
             },
             drivetrain: {
                 name: 'Drivetrain',
@@ -50,6 +50,8 @@ class Specs extends Component {
                 <Spec name={specs.engine.name} spec={specs.engine.spec} />
                 <Spec name={specs.horsepower.name} spec={specs.horsepower.spec} />
                 <Spec name={specs.torque.name} spec={specs.torque.spec} />
+                <Spec name={specs.zeroToSixty.name} spec={specs.zeroToSixty.spec} />
+                <Spec name={specs.weight.name} spec={specs.weight.spec} />
             </div>
         )
     }

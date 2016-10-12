@@ -57,3 +57,20 @@ export let setHorsepowerAndTorque = (specs) => {
     ]
 
 }
+
+export let setWeightAndZeroToSixty = (equipment) => {
+
+    let notAvailable = ''
+    let weightAndZeroToSixty = [notAvailable, notAvailable]
+
+    for(let i=0; i<equipment.length; i++) {
+        if(equipment[i].name == 'Curb Weight') {
+            weightAndZeroToSixty[0] = equipment[i].value + ' lbs'
+        }
+        if(equipment[i].name == 'Manufacturer 0 60mph Acceleration Time (seconds)') {
+            weightAndZeroToSixty[1] = equipment[i].value + ' seconds'
+        }
+    }
+
+    return weightAndZeroToSixty
+}
