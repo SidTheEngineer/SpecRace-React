@@ -64,10 +64,10 @@ export let setWeightAndZeroToSixty = (equipment) => {
     let weightAndZeroToSixty = [notAvailable, notAvailable]
 
     for(let i=0; i<equipment.length; i++) {
-        if(equipment[i].name == 'Curb Weight') {
+        if(equipment[i].name === 'Curb Weight') {
             weightAndZeroToSixty[0] = equipment[i].value + ' lbs'
         }
-        if(equipment[i].name == 'Manufacturer 0 60mph Acceleration Time (seconds)') {
+        if(equipment[i].name === 'Manufacturer 0 60mph Acceleration Time (seconds)') {
             weightAndZeroToSixty[1] = equipment[i].value + ' seconds'
         }
     }
