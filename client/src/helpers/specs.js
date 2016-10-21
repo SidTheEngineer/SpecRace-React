@@ -1,5 +1,17 @@
 const NOT_AVAILABLE = ''
 
+export const specs = {
+    engine: 'Engine',
+    horsepower: 'Horsepower',
+    torque: 'Torque',
+    zeroToSixty: '0-60',
+    transmission: 'Transmission',  
+    weight: 'Curb Weight',
+    drivetrain: 'Drivetrain',
+    fuelEco: 'Fuel Economy (MPG)',
+    msrp: 'MSRP',
+}
+
 export let setEngineName = (specs) => {
 
     let displacement = specs.specs.engine.size
@@ -62,15 +74,14 @@ export let setHorsepowerAndTorque = (specs) => {
 
     }
     catch(e) {
+        if(e instanceof TypeError) {
+            console.log("Horsepower/Torque was not available for the vehicle")
+        }
+        else {
+            console.log(e)
+        }
         return [NOT_AVAILABLE, NOT_AVAILABLE]
     }
-    finally {
-        console.log("Horsepower or torque were not available for this vehicle.")
-    }
-    
-
-
-
 
 }
 
@@ -115,6 +126,55 @@ export let setWeightAndZeroToSixty = (equipment) => {
     return weightAndZeroToSixty
 }
 
-export let setDrivetrain = (specs) => {
-    return specs.specs.drivenWheels ? specs.specs.drivenWheels : NOT_AVAILABLE
+export let setDrivetrain = (specs) => specs.specs.drivenWheels ? specs.specs.drivenWheels : NOT_AVAILABLE
+
+export let setMpg = (specs) => {
+
+    try {
+        var highwayMpg = specs.specs.MPG.highway
+        ? specs.specs.MPG.highway
+        : NOT_AVAILABLE
+
+        var cityMpg = specs.specs.MPG.city
+        ? specs.specs.MPG.city
+        : NOT_AVAILABLE
+
+        return cityMpg 
+            + ' City ' 
+            + highwayMpg
+            + ' Highway '
+    }
+    catch(e) {
+        if(e instanceof TypeError) {
+            console.log("MPG was not available for the vehicle")
+        }
+        else {
+            console.log(e)
+        }
+        return NOT_AVAILABLE
+    }
+
+}
+
+export let setMsrp = (specs) => {
+    try {
+        return(
+            specs.specs.price.baseMSRP 
+            ? '$' + specs.specs.price.baseMSRP
+                    .toFixed(2)
+                    .replace(/(\d)(?=(\d{3})+\.)/g, '$1,')
+                    .replace('.00', '')
+            : NOT_AVAILABLE
+        )
+
+    }
+    catch(e) {
+        if(e instanceof TypeError) {
+            console.log("MSRP was not available for the vehicle")
+        }
+        else {
+            console.log(e)
+        }
+        return NOT_AVAILABLE
+    }
 }
