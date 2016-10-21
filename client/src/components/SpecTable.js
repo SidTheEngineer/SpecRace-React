@@ -1,57 +1,33 @@
 import React, { Component } from 'react'
 import Spec from './Spec'
-import * as helpers from '../helpers.js'
+import * as helpers from '../helpers/specs.js'
 
-class Specs extends Component {
+class SpecTable extends Component {
 
-    listSpecs() {
+    initSpecs() {
 
+        // Put this elsewhere
         let specs = {
-            engine: {
-                name: 'Engine',
-                spec: helpers.setEngineName(this.props.specs)
-            },
-            horsepower: {
-                name: 'Horsepower',
-                spec: helpers.setHorsepowerAndTorque(this.props.specs)[0]
-            },
-            torque: {
-                name: 'Torque',
-                spec: helpers.setHorsepowerAndTorque(this.props.specs)[1]
-            },
-            zeroToSixty: {
-                name: '0-60',
-                spec: helpers.setWeightAndZeroToSixty(this.props.specs.equipment)[1]
-            },
-            transmission: {
-                name: 'Transmission',
-                spec: ''
-            },  
-            weight: {
-                name: 'Weight',
-                spec: helpers.setWeightAndZeroToSixty(this.props.specs.equipment)[0]
-            },
-            drivetrain: {
-                name: 'Drivetrain',
-                spec: ''
-            },
-            fuelEco: {
-                name: 'Fuel Economy (MPG)',
-                spec: ''
-            },
-            msrp: {
-                name: 'MSRP',
-                spec: ''
-            },
+            engine: 'Engine',
+            horsepower: 'Horsepower',
+            torque: 'Torque',
+            zeroToSixty: '0-60',
+            transmission: 'Transmission',  
+            weight: 'Curb Weight',
+            drivetrain: 'Drivetrain',
+            fuelEco: 'Fuel Economy (MPG)',  // Not done
+            msrp: 'MSRP',                   // Not done
         }
 
         return(
             <div>
-                <Spec name={specs.engine.name} spec={specs.engine.spec} />
-                <Spec name={specs.horsepower.name} spec={specs.horsepower.spec} />
-                <Spec name={specs.torque.name} spec={specs.torque.spec} />
-                <Spec name={specs.zeroToSixty.name} spec={specs.zeroToSixty.spec} />
-                <Spec name={specs.weight.name} spec={specs.weight.spec} />
+                <Spec name={specs.engine} spec={helpers.setEngineName(this.props.specs)} />
+                <Spec name={specs.horsepower} spec={helpers.setHorsepowerAndTorque(this.props.specs)[0]} />
+                <Spec name={specs.torque} spec={helpers.setHorsepowerAndTorque(this.props.specs)[1]} />
+                <Spec name={specs.zeroToSixty} spec={helpers.setWeightAndZeroToSixty(this.props.specs.equipment)[1]} />
+                <Spec name={specs.weight} spec={helpers.setWeightAndZeroToSixty(this.props.specs.equipment)[0]} />
+                <Spec name={specs.drivetrain} spec={helpers.setDrivetrain(this.props.specs)} />
+                <Spec name={specs.transmission} spec={helpers.setTransmission(this.props.specs)} />
             </div>
         )
     }
@@ -62,7 +38,7 @@ class Specs extends Component {
                 <div className="specTable col-xs-12">
                     <div className="specList">
 						{
-                            this.listSpecs()
+                            this.initSpecs()
                         }
                     </div>
                 </div>
@@ -71,4 +47,4 @@ class Specs extends Component {
     }
 }
 
-export default Specs
+export default SpecTable
