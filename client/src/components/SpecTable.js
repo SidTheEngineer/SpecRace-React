@@ -8,6 +8,7 @@ class SpecTable extends Component {
 
         return(
             <div>
+                <h1>{helpers.setVehicleName(this.props.specs)}</h1>
                 <Spec name={helpers.specs.engine} spec={helpers.setEngineName(this.props.specs)} />
                 <Spec name={helpers.specs.horsepower} spec={helpers.setHorsepowerAndTorque(this.props.specs)[0]} />
                 <Spec name={helpers.specs.torque} spec={helpers.setHorsepowerAndTorque(this.props.specs)[1]} />

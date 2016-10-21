@@ -178,3 +178,10 @@ export let setMsrp = (specs) => {
         return NOT_AVAILABLE
     }
 }
+
+export let setVehicleName = (specs) => [
+    specs.specs.year.year,
+    specs.specs.make.name,
+    specs.specs.model.name,
+    specs.specs.trim
+].join(' ')
