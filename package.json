@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node build/server.js",
     "start": "npm run build && nf start -p 3000",
-    "build": "babel server.js -d build"
+    "build": "babel src -d build"
   },
   "author": "Sid P.",
   "license": "ISC",
@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.14.0",
-    "babel-preset-latest": "^6.14.0",
+    "babel-preset-latest": "^6.16.0",
     "json-loader": "^0.5.4"
   }
 }

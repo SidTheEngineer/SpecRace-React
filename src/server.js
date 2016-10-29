@@ -1,13 +1,13 @@
 import express from 'express'
 import axios from 'axios'
 import config from '../config' // Path from folder where transpiled.
+import * as server from './helpers/server'
 
 const app = express()
 const PORT = 3001
-
-let apiKey = config.apiKey
-let vehicleUrlStart = config.vehicleUrlStart
-let makesUrl = vehicleUrlStart + 'makes?view=basic&fmt=json&api_key=' + apiKey
+const apiKey = config.apiKey
+const vehicleUrlStart = config.vehicleUrlStart
+const makesUrl = vehicleUrlStart + 'makes?view=basic&fmt=json&api_key=' + apiKey
 
 app.get('/test', (req, res) => {
     res.send("TESTING")
@@ -17,7 +17,6 @@ app.get('/test', (req, res) => {
 app.get('/api/makes', (req, res) => {
     axios.get(makesUrl)
         .then((response) => {
-            // Send array of makes to client as JSON.
             res.json(response.data.makes)
         })
         .catch((error) => {
