@@ -1,6 +1,7 @@
 import express from 'express'
 import axios from 'axios'
 import config from '../config' // Path from folder where transpiled.
+import cache from 'memory-cache'
 import * as server from './helpers/server'
 
 const app = express()
@@ -15,13 +16,25 @@ app.get('/test', (req, res) => {
 
 // Retrieve makes from Edmunds.
 app.get('/api/makes', (req, res) => {
-    axios.get(makesUrl)
-        .then((response) => {
-            res.json(response.data.makes)
-        })
-        .catch((error) => {
-            res.send(error)
-        })
+
+    let cached = cache.get('makes')
+
+    if(!cached) {
+        axios.get(makesUrl)
+            .then((response) => {
+                cache.put('makes', response.data.makes)
+                res.json(response.data.makes)
+            })
+            .catch((error) => {
+                res.send(error)
+            })
+    }
+    else {
+        console.log('Fetching the cahced makes...')
+        res.json(cached)
+    }
+
+
 })
 
 // Retrieve trims from Edmunds based on selected make, model, and year.
