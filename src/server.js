@@ -1,6 +1,6 @@
 import express from 'express'
 import axios from 'axios'
-import config from '../config' // Path from folder where transpiled.
+import config from '../config'  // Path from folder where transpiled.
 import cache from 'memory-cache'
 import * as server from './helpers/server'
 
@@ -9,6 +9,9 @@ const PORT = 3001
 const apiKey = config.apiKey
 const vehicleUrlStart = config.vehicleUrlStart
 const makesUrl = vehicleUrlStart + 'makes?view=basic&fmt=json&api_key=' + apiKey
+
+const MINUTE = 60000            // ms -> minutes
+const HOUR = MINUTE * 60        // ms -> minutes -> hours
 
 app.get('/test', (req, res) => {
     res.send("TESTING")
@@ -22,7 +25,7 @@ app.get('/api/makes', (req, res) => {
     if(!cached) {
         axios.get(makesUrl)
             .then((response) => {
-                cache.put('makes', response.data.makes)
+                cache.put('makes', response.data.makes, 5 * HOUR)
                 res.json(response.data.makes)
             })
             .catch((error) => {

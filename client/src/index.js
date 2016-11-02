@@ -32,6 +32,7 @@ ReactDOM.render(
           <Route path="/search/:make/:model" component={Years} />
           <Route path="/search/:make/:model/:year" component={Trims} />
           <Route path="/search/:make/:model/:year/:trimId" component={SpecTable} />
+          {/* Add deep linking functionality */}
         </Route>
       </Route>
     </Router>

@@ -4,7 +4,7 @@ import * as receiveActions from './receiveActions'
 
 // These are all pretty much Redux-Thunk oriented action creators that
 // make calls to the external API and dispatch other actions around
-// These calls
+// these calls
 
 export const fetchMakes = (url) => {
     return (dispatch) => {
