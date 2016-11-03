@@ -4,6 +4,22 @@ import YearButtons from './middleComponents/buttons/YearButtons'
 
 class Years extends Component {
 
+    componentWillMount() {
+
+        console.log(this.props)
+
+        // If a deep link occurred, fetch the models and years
+        // via the params that were used in the URL.
+        if(
+            !this.props.years.years.length
+            && !this.props.models.models.length
+            && this.props.makes.makes.length
+        ) {
+            this.props.fetchActions.fetchModels(this.props.params.make)
+            this.props.fetchActions.fetchYears(this.props.params.model)
+        }
+    }
+
     fetchTrims(event) {
         let make = this.props.models.selectedMake,
             model = this.props.years.selectedModel,

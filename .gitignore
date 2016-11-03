@@ -12,3 +12,5 @@ npm-debug.log
 
 # private keys/URLs
 config.json
+
+.idea
