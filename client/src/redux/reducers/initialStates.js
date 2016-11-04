@@ -7,24 +7,30 @@ export const initialPage = {
 }
 
 export const makes = {
-    makes: []
+    makes: [],
+    received: false
 }
 
 export const models = {
     models: [],
+    received: false,
     selectedMake: ''
 }
 
 export const years = {
     years: [],
+    received: false,
     selectedModel: ''
 }
 
 export const trims = {
-    trims: []
+    trims: [],
+    received: false
 }
 
 export const specs = {
     specs: [],
-    equipment: []
+    equipment: [],
+    receivedSpecs: false,
+    receivedEquipment: false,
 }

@@ -6,12 +6,12 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import App from './containers/App';
 import './styles/index.css';
 import configureStore from './redux/store'
-import Makes from './components/Makes'
-import Models from './components/Models'
+import Makes from './components/middleComponents/Makes'
+import Models from './components/middleComponents/Models'
 import Middle from './components/Middle'
-import Years from './components/Years'
-import Trims from './components/Trims'
-import SpecTable from './components/SpecTable'
+import Years from './components/middleComponents/Years'
+import Trims from './components/middleComponents/Trims'
+import SpecTable from './components/middleComponents/SpecTable'
 
 
 const store = configureStore()

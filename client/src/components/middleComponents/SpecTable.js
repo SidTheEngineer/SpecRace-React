@@ -1,8 +1,19 @@
 import React, { Component } from 'react'
 import Spec from './Spec'
-import * as helpers from '../helpers/specs.js'
+import LoadingSpinner from './LoadingSpinner'
+import * as helpers from '../../helpers/specs.js'
 
 class SpecTable extends Component {
+
+    componentWillMount() {
+        console.log(this.props)
+
+        if(
+            !this.props.specs.received
+        ) {
+            this.props.fetchActions.fetchSpecs('/api/' + this.props.params.trimId)
+        }
+    }
 
     initSpecs() {
 
@@ -20,20 +31,28 @@ class SpecTable extends Component {
                 <Spec name={helpers.specs.msrp} spec={helpers.setMsrp(this.props.specs)} />
             </div>
         )
+
     }
 
     render() {
-        return(
-            <div className="specGrid row">
-                <div className="specTable col-xs-12">
-                    <div className="specList">
-						{
-                            this.initSpecs()
-                        }
+
+        if(this.props.specs.received) {
+            return(
+                <div className="specGrid row">
+                    <div className="specTable col-xs-12">
+                        <div className="specList">
+                            {
+                                this.initSpecs()
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        }
+        else {
+            return <LoadingSpinner/>
+        }
+
     }
 }
 

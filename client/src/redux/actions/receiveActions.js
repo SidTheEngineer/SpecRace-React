@@ -8,7 +8,8 @@ export const receivedMakes = (makes) => {
     return {
         type: RECEIVED_MAKES,
         makes,
-        loading: false
+        loading: false,
+        received: true
     }
 }
 
@@ -16,7 +17,8 @@ export const receivedModels = (selectedMake, models) => {
     return {
         type: RECEIVED_MODELS,
         selectedMake,
-        models
+        models,
+        received: true
     }
 }
 
@@ -24,7 +26,8 @@ export const receivedYears = (selectedModel, years) => {
     return {
         type: RECEIVED_YEARS,
         selectedModel,
-        years
+        years,
+        received: true,
     }
 }
 
@@ -32,7 +35,8 @@ export const receivedTrims = (trims) => {
     return {
         type: RECEIVED_TRIMS,
         trims,
-        loading: false
+        loading: false,
+        received: true
     }
 }
 
@@ -40,6 +44,7 @@ export const receivedSpecs = (specs) => {
     return {
         type: RECEIVED_SPECS,
         specs,
-        loading: false
+        loading: false,
+        received: true
     }
 }

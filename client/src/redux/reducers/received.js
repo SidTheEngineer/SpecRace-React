@@ -9,6 +9,7 @@ export let makes = (state = initialStates.makes, action) => {
             // Return the new state/store
             return Object.assign({}, state, {
                 makes: action.makes,
+                received: action.received
             })
 
         default:
@@ -21,7 +22,8 @@ export let models = (state = initialStates.models, action) => {
         case 'RECEIVED_MODELS':
             return Object.assign({}, state, {
                 selectedMake: action.selectedMake,
-                models: action.models
+                models: action.models,
+                received: action.received
             })
         default:
             return state
@@ -33,7 +35,8 @@ export let years = (state = initialStates.years, action) => {
         case 'RECEIVED_YEARS':
             return Object.assign({}, state, {
                 selectedModel: action.selectedModel,
-                years: action.years
+                years: action.years,
+                received: action.received
             })
 
         default:    
@@ -45,7 +48,8 @@ export let trims = (state = initialStates.trims, action) => {
     switch(action.type) {
         case 'RECEIVED_TRIMS':
             return Object.assign({}, state, {
-                trims: action.trims
+                trims: action.trims,
+                received: action.received
             })
 
         default:
@@ -58,7 +62,8 @@ export let specs = (state = initialStates.specs, action) => {
         case 'RECEIVED_SPECS':
             return Object.assign({}, state, {
                 specs: action.specs.specs,
-                equipment: action.specs.equipment
+                equipment: action.specs.equipment,
+                received: action.received
             })
 
         default:

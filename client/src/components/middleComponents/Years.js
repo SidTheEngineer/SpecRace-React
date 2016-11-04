@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import ButtonGrid from './middleComponents/ButtonGrid'
-import YearButtons from './middleComponents/buttons/YearButtons'
+import ButtonGrid from './ButtonGrid'
+import YearButtons from './buttons/YearButtons'
 
 class Years extends Component {
 
@@ -11,9 +11,8 @@ class Years extends Component {
         // If a deep link occurred, fetch the models and years
         // via the params that were used in the URL.
         if(
-            !this.props.years.years.length
-            && !this.props.models.models.length
-            && this.props.makes.makes.length
+            !this.props.years.received
+            && this.props.makes.received // Makes need to load befoer
         ) {
             this.props.fetchActions.fetchModels(this.props.params.make)
             this.props.fetchActions.fetchYears(this.props.params.model)

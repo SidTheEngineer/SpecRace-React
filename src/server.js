@@ -25,7 +25,7 @@ app.get('/api/makes', (req, res) => {
     if(!cached) {
         axios.get(makesUrl)
             .then((response) => {
-                cache.put('makes', response.data.makes, 5 * HOUR)
+                cache.put('makes', response.data.makes, 12 * HOUR)
                 res.json(response.data.makes)
             })
             .catch((error) => {
@@ -42,59 +42,87 @@ app.get('/api/makes', (req, res) => {
 
 // Retrieve trims from Edmunds based on selected make, model, and year.
 app.get('/api/:make/:model/:year', (req, res) => {
-    let trimsUrl = config.vehicleUrlStart 
-        + [req.params.make, req.params.model, req.params.year].join('/')
-        + config.trimsUrlEnding
-        + config.apiKey
 
-    axios.get(trimsUrl)
-        .then((response) => {
-            // Send trims to client as JSON.
-            res.json(response.data.styles)
-        })
-        .catch((error) => {
-            res.send(error)
-        })
+    let cached = cache.get(req.params.year)
+
+    if(!cached) {
+        let trimsUrl = config.vehicleUrlStart
+            + [req.params.make, req.params.model, req.params.year].join('/')
+            + config.trimsUrlEnding
+            + config.apiKey
+
+        axios.get(trimsUrl)
+            .then((response) => {
+
+                cache.put(req.params.year, response.data.styles, 5 * HOUR)
+
+                // Send trims to client as JSON.
+                res.json(response.data.styles)
+            })
+            .catch((error) => {
+                res.send(error)
+            })
+    }
+    else {
+        console.log('Fetching the cached trims...')
+        res.json(cached)
+    }
+
 })
 
 // Retrieve specs and equipment via selected trim's ID.
 app.get('/api/:trimId', (req, res) => {
-    let specsUrl = config.vehicleUrlStart
-        + 'styles/'
-        + req.params.trimId
-        + config.specsUrlEnding
-        + config.apiKey
 
-    let equipmentUrl = config.vehicleUrlStart
-        + 'styles/'
-        + req.params.trimId
-        + config.equipmentUrlEnding
-        + config.apiKey
+    let cached = cache.get(req.params.trimId)
 
-    let getSpecs = (specsUrl) => axios.get(specsUrl)
-    let getEquipment = (equipmentUrl) => axios.get(equipmentUrl)
+    if(!cached) {
+        let specsUrl = config.vehicleUrlStart
+            + 'styles/'
+            + req.params.trimId
+            + config.specsUrlEnding
+            + config.apiKey
 
-    axios.all([getSpecs(specsUrl), getEquipment(equipmentUrl)])
-        .then(axios.spread((specs, equipment) => {
+        let equipmentUrl = config.vehicleUrlStart
+            + 'styles/'
+            + req.params.trimId
+            + config.equipmentUrlEnding
+            + config.apiKey
 
-            let tempEquipment
+        let getSpecs = (specsUrl) => axios.get(specsUrl)
+        let getEquipment = (equipmentUrl) => axios.get(equipmentUrl)
 
-            // Check if the vehicle has equipment available for it.
-            try {
-                tempEquipment = equipment.data.equipment[0].attributes
-            }
-            catch(error) {
-                tempEquipment = null
-            }
+        axios.all([getSpecs(specsUrl), getEquipment(equipmentUrl)])
+            .then(axios.spread((specs, equipment) => {
 
-            res.send({
-                specs: specs.data,
-                equipment: tempEquipment
+                let tempEquipment
+
+                // Check if the vehicle has equipment available for it.
+                try {
+                    tempEquipment = equipment.data.equipment[0].attributes
+                }
+                catch(error) {
+                    tempEquipment = null
+                }
+
+                // Cache the specs and equipment via trim ID.
+                cache.put(req.params.trimId, {
+                    specs: specs.data,
+                    equipment: tempEquipment
+                }, 5 * HOUR)
+
+                res.send({
+                    specs: specs.data,
+                    equipment: tempEquipment
+                })
+            }))
+            .catch((error) => {
+                res.send(error)
             })
-        }))
-        .catch((error) => {
-            res.send(error)
-        })
+    }
+    else {
+        console.log('Fetching the cached specs...')
+        res.send(cached)
+    }
     
 })
 

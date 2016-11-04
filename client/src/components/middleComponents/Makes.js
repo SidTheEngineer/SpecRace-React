@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import ButtonGrid from './middleComponents/ButtonGrid'
-import MakeButtons from './middleComponents/buttons/MakeButtons'
+import ButtonGrid from './ButtonGrid'
+import MakeButtons from './buttons/MakeButtons'
 
 class Makes extends Component {
 

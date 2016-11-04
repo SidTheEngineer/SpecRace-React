@@ -4,7 +4,6 @@ import { Link } from 'react-router'
 class TrimButtons extends Component {
 
     listTrims() {
-        console.log(this.props)
         return(
             <div>
                 {
