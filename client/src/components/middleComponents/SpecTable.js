@@ -5,7 +5,9 @@ import * as helpers from '../../helpers/specs.js'
 
 class SpecTable extends Component {
 
-    componentWillMount() {
+    // componentWillMount gets called twice for some reason
+    // so replaced with componentDidMount.
+    componentDidMount() {
         console.log(this.props)
 
         if(

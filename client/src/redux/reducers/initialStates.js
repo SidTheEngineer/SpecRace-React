@@ -31,6 +31,5 @@ export const trims = {
 export const specs = {
     specs: [],
     equipment: [],
-    receivedSpecs: false,
-    receivedEquipment: false,
+    received: false
 }
