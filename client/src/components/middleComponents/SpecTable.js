@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Spec from './Spec'
 import LoadingSpinner from './LoadingSpinner'
-import * as helpers from '../../helpers/specs.js'
+import * as helpers from '../../helpers/parseSpecs.js'
 
 class SpecTable extends Component {
 
