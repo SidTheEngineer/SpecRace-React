@@ -4,12 +4,16 @@ import TrimButtons from './buttons/TrimButtons'
 
 class Trims extends Component {
 
-    componentWillMount() {
+    constructor(props) {
+        super(props)
+
+        this.fetchSpecs = this.fetchSpecs.bind(this)
+
         if(
             // If the user deep linked to the trims for a vehicle,
-            // go get the models, years and trims.
-            !this.props.trims.received
-            && this.props.makes.received // makes need to load before fetch.
+        // go get the models, years and trims.
+        !this.props.trims.received
+        && this.props.makes.received // makes need to load before fetch.
 
         ) {
             let trimUrl = [
@@ -38,7 +42,7 @@ class Trims extends Component {
                 <TrimButtons
                     params={this.props.params}
                     trims={this.props.trims.trims}
-                    fetchSpecs={this.fetchSpecs.bind(this)}
+                    fetchSpecs={this.fetchSpecs}
                 />   
             </ButtonGrid>
         )

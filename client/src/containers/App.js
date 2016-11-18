@@ -12,9 +12,11 @@ const apiMakesUrl = '/api/makes'
 
 class App extends Component {
 
-  componentWillMount() {
-    // Fetch makes from the backend.
-    this.props.fetchActions.fetchMakes(apiMakesUrl)
+  constructor(props) {
+      super(props)
+
+      // Initialize app's state by fetching Makes from Edmunds.
+      this.props.fetchActions.fetchMakes(apiMakesUrl)
   }
 
   render() {

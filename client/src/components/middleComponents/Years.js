@@ -4,7 +4,10 @@ import YearButtons from './buttons/YearButtons'
 
 class Years extends Component {
 
-    componentWillMount() {
+    constructor(props) {
+        super(props)
+
+        this.fetchTrims = this.fetchTrims.bind(this)
 
         console.log(this.props)
 
@@ -12,7 +15,7 @@ class Years extends Component {
         // via the params that were used in the URL.
         if(
             !this.props.years.received
-            && this.props.makes.received // Makes need to load befoer
+            && this.props.makes.received // Makes need to load before
         ) {
             this.props.fetchActions.fetchModels(this.props.params.make)
             this.props.fetchActions.fetchYears(this.props.params.model)
@@ -35,7 +38,7 @@ class Years extends Component {
                 <YearButtons
                     params={this.props.params}
                     years={this.props.years.years} 
-                    fetchTrims={this.fetchTrims.bind(this)}
+                    fetchTrims={this.fetchTrims}
                 />
             </ButtonGrid>
         )

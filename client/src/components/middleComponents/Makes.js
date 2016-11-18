@@ -4,6 +4,12 @@ import MakeButtons from './buttons/MakeButtons'
 
 class Makes extends Component {
 
+    constructor() {
+        super()
+
+        this.fetchModels = this.fetchModels.bind(this)
+    }
+
     fetchModels(event) {
         this.props.fetchActions.fetchModels(event.target.value)
     }
@@ -11,7 +17,7 @@ class Makes extends Component {
     render() {
         return(
             <ButtonGrid>
-                <MakeButtons makes={this.props.makes.makes} fetchModels={this.fetchModels.bind(this)}/>
+                <MakeButtons makes={this.props.makes.makes} fetchModels={this.fetchModels}/>
             </ButtonGrid>
         )
     }

@@ -4,7 +4,11 @@ import ModelButtons from './buttons/ModelButtons'
 
 class Models extends Component {
 
-    componentWillMount() {
+    constructor(props) {
+        super(props)
+
+        this.fetchYears = this.fetchYears.bind(this)
+
         // Logic for deep linking here: if the onClick of the button didn't fire
         // then the models were not fetched, and thus a refresh or deep link happened.
         if(!this.props.models.received && this.props.makes.received) {
@@ -22,7 +26,7 @@ class Models extends Component {
                 <ModelButtons
                     params={this.props.params} 
                     models={this.props.models.models} 
-                    fetchYears={this.fetchYears.bind(this)} 
+                    fetchYears={this.fetchYears}
                 />
             </ButtonGrid>
         )
