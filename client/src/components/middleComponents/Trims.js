@@ -11,9 +11,9 @@ class Trims extends Component {
 
         if(
             // If the user deep linked to the trims for a vehicle,
-        // go get the models, years and trims.
-        !this.props.trims.received
-        && this.props.makes.received // makes need to load before fetch.
+            // go get the models, years and trims.
+            !this.props.trims.received
+            && this.props.makes.received // makes need to load before fetch.
 
         ) {
             let trimUrl = [

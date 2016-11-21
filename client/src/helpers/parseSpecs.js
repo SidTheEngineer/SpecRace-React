@@ -109,18 +109,16 @@ export let setWeightAndZeroToSixty = (equipment) => {
 
     // Initially not available.
     let weightAndZeroToSixty = [NOT_AVAILABLE, NOT_AVAILABLE]
+    const WEIGHT = 'Curb Weight'
+    const ZERO_TO_SIXTY = 'Manufacturer 0 60mph Acceleration Time (seconds)'
 
     if(equipment) {
-        for(let i=0; i<equipment.length; i++) {
-            // Get the curb weight of the vehicle.
-            if(equipment[i].name === 'Curb Weight') {
-                weightAndZeroToSixty[0] = equipment[i].value + ' lbs'
-            }
-            // Get the 0-60 if available.
-            if(equipment[i].name === 'Manufacturer 0 60mph Acceleration Time (seconds)') {
-                weightAndZeroToSixty[1] = equipment[i].value + ' seconds'
-            }
-        }
+
+            // Set the weight and 0-60 if they're available.
+            weightAndZeroToSixty[0] = equipment.filter(object => object.name === WEIGHT)[0].value
+                + ' lbs'
+            weightAndZeroToSixty[1] = equipment.filter(object => object.name === ZERO_TO_SIXTY)[0].value
+                + ' seconds'
     }
 
     return weightAndZeroToSixty
