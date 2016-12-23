@@ -2,6 +2,7 @@ import express from 'express'
 import axios from 'axios'
 import config from '../config'  // Path from folder where transpiled.
 import cache from 'memory-cache'
+import path from 'path'
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -13,7 +14,7 @@ const MINUTE = 60000            // ms -> minutes
 const HOUR = MINUTE * 60        // ms -> minutes -> hours
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
+  app.use(express.static(path.join(__dirname, 'client/build')));
 }
 
 // Retrieve makes from Edmunds.
