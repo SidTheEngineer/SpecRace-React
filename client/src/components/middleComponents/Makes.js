@@ -19,7 +19,11 @@ class Makes extends Component {
             <ButtonGrid>
                 {
                     this.props.makes.makes.map((make) => {
-                        return <MakeButton make={make} key={make.name} fetchModels={this.fetchModels} />
+                        return <MakeButton 
+                                    make={make} 
+                                    key={make.name} 
+                                    fetchModels={this.fetchModels} 
+                                />
                     })
                 }
             </ButtonGrid>

@@ -2,16 +2,19 @@ import express from 'express'
 import axios from 'axios'
 import config from '../config'  // Path from folder where transpiled.
 import cache from 'memory-cache'
-import * as server from './helpers/server'
 
 const app = express()
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 const apiKey = config.apiKey
 const vehicleUrlStart = config.vehicleUrlStart
 const makesUrl = vehicleUrlStart + 'makes?view=basic&fmt=json&api_key=' + apiKey
 
 const MINUTE = 60000            // ms -> minutes
 const HOUR = MINUTE * 60        // ms -> minutes -> hours
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
 
 // Retrieve makes from Edmunds.
 app.get('/api/makes', (req, res) => {
