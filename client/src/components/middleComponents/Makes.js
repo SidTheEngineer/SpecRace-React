@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ButtonGrid from './ButtonGrid'
-import MakeButtons from './buttons/MakeButtons'
+import MakeButton from './buttons/MakeButton'
 
 class Makes extends Component {
 
@@ -17,7 +17,11 @@ class Makes extends Component {
     render() {
         return(
             <ButtonGrid>
-                <MakeButtons makes={this.props.makes.makes} fetchModels={this.fetchModels}/>
+                {
+                    this.props.makes.makes.map((make) => {
+                        return <MakeButton make={make} key={make.name} fetchModels={this.fetchModels} />
+                    })
+                }
             </ButtonGrid>
         )
     }

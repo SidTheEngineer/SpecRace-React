@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ButtonGrid from './ButtonGrid'
-import YearButtons from './buttons/YearButtons'
+import YearButton from './buttons/YearButton'
 
 class Years extends Component {
 
@@ -35,11 +35,16 @@ class Years extends Component {
     render() {
         return(
             <ButtonGrid>
-                <YearButtons
-                    params={this.props.params}
-                    years={this.props.years.years} 
-                    fetchTrims={this.fetchTrims}
-                />
+                {
+                    this.props.years.years.reverse().map((year) => {
+                        return <YearButton
+                                    key={year.year}
+                                    year={year}
+                                    params={this.props.params} 
+                                    fetchTrims={this.fetchTrims}
+                                />
+                    })
+                }
             </ButtonGrid>
         )
     }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ButtonGrid from './ButtonGrid'
-import ModelButtons from './buttons/ModelButtons'
+import ModelButton from './buttons/ModelButton'
 
 class Models extends Component {
 
@@ -23,11 +23,16 @@ class Models extends Component {
     render() {
         return(
             <ButtonGrid>
-                <ModelButtons
-                    params={this.props.params} 
-                    models={this.props.models.models} 
-                    fetchYears={this.fetchYears}
-                />
+                {
+                    this.props.models.models.map((model) => {
+                        return <ModelButton
+                                    params={this.props.params} 
+                                    key={model.name} 
+                                    model={model} 
+                                    fetchYears={this.fetchYears} 
+                                />
+                    })
+                }
             </ButtonGrid>
         )
     }

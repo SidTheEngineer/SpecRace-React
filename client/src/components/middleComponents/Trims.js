@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ButtonGrid from './ButtonGrid'
-import TrimButtons from './buttons/TrimButtons'
+import TrimButton from './buttons/TrimButton'
 
 class Trims extends Component {
 
@@ -39,11 +39,16 @@ class Trims extends Component {
     render() {
         return(
             <ButtonGrid>
-                <TrimButtons
-                    params={this.props.params}
-                    trims={this.props.trims.trims}
-                    fetchSpecs={this.fetchSpecs}
-                />   
+                {
+                    this.props.trims.trims.map((trim) => {
+                        return <TrimButton
+                                    key={trim.id}
+                                    trim={trim}
+                                    params={this.props.params}
+                                    fetchSpecs={this.fetchSpecs}
+                                />
+                    })
+                }
             </ButtonGrid>
         )
     }
