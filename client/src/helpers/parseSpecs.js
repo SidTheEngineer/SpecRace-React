@@ -5,7 +5,7 @@ export const specs = {
     horsepower: 'Horsepower',
     torque: 'Torque',
     zeroToSixty: '0-60',
-    transmission: 'Transmission',  
+    transmission: 'Transmission',
     weight: 'Curb Weight',
     drivetrain: 'Drivetrain',
     fuelEco: 'Fuel Economy (MPG)',
@@ -18,16 +18,16 @@ export let setEngineName = (specs) => {
     ? specs.specs.engine.size
     : NOT_AVAILABLE
 
-    let engineConfig = specs.specs.engine.configuration 
-    ? specs.specs.engine.configuration 
+    let engineConfig = specs.specs.engine.configuration
+    ? specs.specs.engine.configuration
     : NOT_AVAILABLE
 
-    let cylinder = specs.specs.engine.cylinder 
-    ? specs.specs.engine.cylinder 
+    let cylinder = specs.specs.engine.cylinder
+    ? specs.specs.engine.cylinder
     : NOT_AVAILABLE
 
-    let compressorType = specs.specs.engine.compressorType 
-    ? specs.specs.engine.compressorType 
+    let compressorType = specs.specs.engine.compressorType
+    ? specs.specs.engine.compressorType
     : NOT_AVAILABLE
 
     let engineName = [
@@ -59,7 +59,7 @@ export let setHorsepowerAndTorque = (specs) => {
         ? specs.specs.engine.rpm.horsepower
         : NOT_AVAILABLE
 
-        var torque = specs.specs.engine.torque 
+        var torque = specs.specs.engine.torque
         ? specs.specs.engine.torque
         : NOT_AVAILABLE
 
@@ -89,7 +89,7 @@ export let setTransmission = (specs) => {
 
     let numberOfSpeeds = specs.specs.transmission.numberOfSpeeds
     ? specs.specs.transmission.numberOfSpeeds
-    : NOT_AVAILABLE                   
+    : NOT_AVAILABLE
 
     let transmissionType = specs.specs.transmission.transmissionType
     ? specs.specs.transmission.transmissionType
@@ -137,8 +137,8 @@ export let setMpg = (specs) => {
         ? specs.specs.MPG.city
         : NOT_AVAILABLE
 
-        return cityMpg 
-            + ' City ' 
+        return cityMpg
+            + ' City '
             + highwayMpg
             + ' Highway '
     }
@@ -157,7 +157,7 @@ export let setMpg = (specs) => {
 export let setMsrp = (specs) => {
     try {
         return(
-            specs.specs.price.baseMSRP 
+            specs.specs.price.baseMSRP
             ? '$' + specs.specs.price.baseMSRP
                     .toFixed(2)
                     .replace(/(\d)(?=(\d{3})+\.)/g, '$1,')

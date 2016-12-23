@@ -13,10 +13,6 @@ const makesUrl = vehicleUrlStart + 'makes?view=basic&fmt=json&api_key=' + apiKey
 const MINUTE = 60000            // ms -> minutes
 const HOUR = MINUTE * 60        // ms -> minutes -> hours
 
-app.get('/test', (req, res) => {
-    res.send("TESTING")
-})
-
 // Retrieve makes from Edmunds.
 app.get('/api/makes', (req, res) => {
 

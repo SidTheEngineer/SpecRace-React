@@ -3,13 +3,21 @@ import { Link } from 'react-router'
 
 class TrimButtons extends Component {
 
+    constructor() {
+        super()
+
+        this.state = {
+            bootstrapLayout: "col-xs-12 col-md-6"
+        }
+    }
+
     listTrims() {
         return(
             <div>
                 {
                     this.props.trims.map((trim) => {
                         return(
-                            <div key={trim.name} className="col-xs-12 col-md-6">
+                            <div key={trim.name} className={this.state.bootstrapLayout}>
                                 <Link to={`/search/${this.props.params.make}/${this.props.params.model}/${this.props.params.year}/${trim.id}`}>
                                     <button value={trim.id} onClick={this.props.fetchSpecs}>{trim.name}</button>      
                                 </Link>
