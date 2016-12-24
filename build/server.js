@@ -56,14 +56,14 @@ app.get('/api/makes', function (req, res) {
 // Retrieve trims from Edmunds based on selected make, model, and year.
 app.get('/api/:make/:model/:year', function (req, res) {
 
-    var cached = _memoryCache2.default.get(req.params.year);
+    var cached = _memoryCache2.default.get(req.params.model);
 
     if (!cached) {
         var trimsUrl = vehicleUrlStart + [req.params.make, req.params.model, req.params.year].join('/') + process.env.TRIMS_URL_ENDING + apiKey;
 
         _axios2.default.get(trimsUrl).then(function (response) {
 
-            _memoryCache2.default.put(req.params.year, response.data.styles, 5 * HOUR);
+            _memoryCache2.default.put(req.params.model, response.data.styles, 5 * HOUR);
 
             // Send trims to client as JSON.
             res.json(response.data.styles);
