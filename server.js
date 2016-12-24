@@ -46,10 +46,10 @@ app.get('/api/:make/:model/:year', (req, res) => {
     let cached = cache.get(req.params.year)
 
     if(!cached) {
-        let trimsUrl = config.vehicleUrlStart
+        let trimsUrl = vehicleUrlStart
             + [req.params.make, req.params.model, req.params.year].join('/')
-            + config.trimsUrlEnding
-            + config.apiKey
+            + process.env.TRIMS_URL_ENDING
+            + apiKey
 
         axios.get(trimsUrl)
             .then((response) => {
@@ -76,17 +76,17 @@ app.get('/api/:trimId', (req, res) => {
     let cached = cache.get(req.params.trimId)
 
     if(!cached) {
-        let specsUrl = config.vehicleUrlStart
+        let specsUrl = vehicleUrlStart
             + 'styles/'
             + req.params.trimId
-            + config.specsUrlEnding
-            + config.apiKey
+            + process.env.SPECS_URL_ENDING
+            + apiKey
 
-        let equipmentUrl = config.vehicleUrlStart
+        let equipmentUrl = vehicleUrlStart
             + 'styles/'
             + req.params.trimId
-            + config.equipmentUrlEnding
-            + config.apiKey
+            + process.env.EQUIPMENT_URL_ENDING
+            + apiKey
 
         let getSpecs = (specsUrl) => axios.get(specsUrl)
         let getEquipment = (equipmentUrl) => axios.get(equipmentUrl)

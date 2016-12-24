@@ -56,7 +56,7 @@ app.get('/api/:make/:model/:year', function (req, res) {
     var cached = _memoryCache2.default.get(req.params.year);
 
     if (!cached) {
-        var trimsUrl = config.vehicleUrlStart + [req.params.make, req.params.model, req.params.year].join('/') + config.trimsUrlEnding + config.apiKey;
+        var trimsUrl = vehicleUrlStart + [req.params.make, req.params.model, req.params.year].join('/') + process.env.TRIMS_URL_ENDING + apiKey;
 
         _axios2.default.get(trimsUrl).then(function (response) {
 
@@ -79,9 +79,9 @@ app.get('/api/:trimId', function (req, res) {
     var cached = _memoryCache2.default.get(req.params.trimId);
 
     if (!cached) {
-        var specsUrl = config.vehicleUrlStart + 'styles/' + req.params.trimId + config.specsUrlEnding + config.apiKey;
+        var specsUrl = vehicleUrlStart + 'styles/' + req.params.trimId + process.env.SPECS_URL_ENDING + apiKey;
 
-        var equipmentUrl = config.vehicleUrlStart + 'styles/' + req.params.trimId + config.equipmentUrlEnding + config.apiKey;
+        var equipmentUrl = vehicleUrlStart + 'styles/' + req.params.trimId + process.env.EQUIPMENT_URL_ENDING + apiKey;
 
         var getSpecs = function getSpecs(specsUrl) {
             return _axios2.default.get(specsUrl);
