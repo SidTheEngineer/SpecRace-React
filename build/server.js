@@ -28,9 +28,11 @@ var makesUrl = vehicleUrlStart + 'makes?view=basic&fmt=json&api_key=' + apiKey;
 var MINUTE = 60000; // ms -> minutes
 var HOUR = MINUTE * 60; // ms -> minutes -> hours
 
+process.env.PWD = process.cwd();
+
 if (process.env.NODE_ENV === 'production') {
     console.log('serving static files');
-    app.use(_express2.default.static(_path2.default.join(__dirname, 'client/build')));
+    app.use(_express2.default.static(process.env.PWD + '/client/build'));
 }
 
 // Retrieve makes from Edmunds.
