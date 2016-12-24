@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "node build/server.js",
-    "start": "npm run build && nf start -p 3000",
+    "install": "cd client && npm install && npm run build && cd ..",
+    "start": "node server.js",
     "build": "babel server.js -d build"
   },
   "author": "Sid P.",
