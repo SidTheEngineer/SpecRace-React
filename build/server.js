@@ -37,7 +37,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // Use JS for all 'other' routes.
 app.get('*', function (req, res) {
-    res.sendFile('../client/build/index.html');
+    res.sendFile('/app/client/build/index.html');
 });
 
 // Retrieve makes from Edmunds.
