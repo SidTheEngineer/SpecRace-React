@@ -18,6 +18,9 @@
     "foreman": "^2.0.0",
     "memory-cache": "^0.1.6"
   },
+  "engines": {
+    "npm": "3.10.3"
+  },
   "devDependencies": {
     "babel-cli": "^6.14.0",
     "babel-preset-latest": "^6.16.0",
