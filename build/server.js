@@ -35,6 +35,11 @@ if (process.env.NODE_ENV === 'production') {
     app.use(_express2.default.static(process.env.PWD + '/client/build'));
 }
 
+// Use JS for all 'other' routes.
+app.get('*', function (req, res) {
+    res.sendFile('../client/build/index.html');
+});
+
 // Retrieve makes from Edmunds.
 app.get('/api/makes', function (req, res) {
 
