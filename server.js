@@ -15,7 +15,7 @@ const HOUR = MINUTE * 60        // ms -> minutes -> hours
 
 if (process.env.NODE_ENV === 'production') {
     console.log('serving static files')
-    app.use(express.static(path.join(__dirname, 'client/build')));
+    app.use(express.static('client/build'));
 }
 
 // Retrieve makes from Edmunds.
