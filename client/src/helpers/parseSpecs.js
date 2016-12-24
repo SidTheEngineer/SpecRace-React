@@ -112,6 +112,8 @@ export let setWeightAndZeroToSixty = (equipment) => {
 
     if(equipment) {
 
+            let weightAndZeroToSixty = [NOT_AVAILABLE, NOT_AVAILABLE]
+
             // Set the weight and 0-60 if they're available.
             weightAndZeroToSixty[0] = equipment.filter(object => object.name === WEIGHT)[0].value
                 ? equipment.filter(object => object.name === WEIGHT)[0].value + ' lbs'
