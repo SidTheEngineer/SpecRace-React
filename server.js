@@ -46,7 +46,7 @@ app.get('/api/makes', (req, res) => {
 // Retrieve trims from Edmunds based on selected make, model, and year.
 app.get('/api/:make/:model/:year', (req, res) => {
 
-    let cached = cache.get(req.params.year)
+    let cached = cache.get(req.params.model)
 
     if(!cached) {
         let trimsUrl = vehicleUrlStart
@@ -57,7 +57,7 @@ app.get('/api/:make/:model/:year', (req, res) => {
         axios.get(trimsUrl)
             .then((response) => {
 
-                cache.put(req.params.year, response.data.styles, 5 * HOUR)
+                cache.put(req.params.model, response.data.styles, 5 * HOUR)
 
                 // Send trims to client as JSON.
                 res.json(response.data.styles)
