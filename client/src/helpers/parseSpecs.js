@@ -110,9 +110,9 @@ export let setWeightAndZeroToSixty = (equipment) => {
     const WEIGHT = 'Curb Weight'
     const ZERO_TO_SIXTY = 'Manufacturer 0 60mph Acceleration Time (seconds)'
 
+    let weightAndZeroToSixty = [NOT_AVAILABLE, NOT_AVAILABLE]
+    
     if(equipment) {
-
-            let weightAndZeroToSixty = [NOT_AVAILABLE, NOT_AVAILABLE]
 
             // Set the weight and 0-60 if they're available.
             try {
@@ -135,7 +135,7 @@ export let setWeightAndZeroToSixty = (equipment) => {
                 }
             }   
     }
-    
+
     return weightAndZeroToSixty
 }
 
