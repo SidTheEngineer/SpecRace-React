@@ -35,11 +35,6 @@ if (process.env.NODE_ENV === 'production') {
     app.use(_express2.default.static(process.env.PWD + '/client/build'));
 }
 
-// Use JS for all 'other' routes.
-app.get('*', function (req, res) {
-    res.sendFile('/app/client/build/index.html');
-});
-
 // Retrieve makes from Edmunds.
 app.get('/api/makes', function (req, res) {
 
@@ -126,6 +121,11 @@ app.get('/api/:trimId', function (req, res) {
         console.log('Fetching the cached specs...');
         res.send(cached);
     }
+});
+
+// Use JS for all 'other' routes.
+app.get('*', function (req, res) {
+    res.sendFile('/app/client/build/index.html');
 });
 
 app.listen(PORT, function () {
