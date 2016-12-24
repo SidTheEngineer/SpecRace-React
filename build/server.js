@@ -8,10 +8,6 @@ var _axios = require('axios');
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _config = require('../config');
-
-var _config2 = _interopRequireDefault(_config);
-
 var _memoryCache = require('memory-cache');
 
 var _memoryCache2 = _interopRequireDefault(_memoryCache);
@@ -22,11 +18,11 @@ var _path2 = _interopRequireDefault(_path);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Path from folder where transpiled.
+//import config from '../config'  // Path from folder where transpiled.
 var app = (0, _express2.default)();
 var PORT = process.env.PORT || 3001;
-var apiKey = _config2.default.apiKey;
-var vehicleUrlStart = _config2.default.vehicleUrlStart;
+var apiKey = process.env.API_KEY; //config.apiKey
+var vehicleUrlStart = process.env.VEHICLE_URL_START; //config.vehicleUrlStart
 var makesUrl = vehicleUrlStart + 'makes?view=basic&fmt=json&api_key=' + apiKey;
 
 var MINUTE = 60000; // ms -> minutes
@@ -60,7 +56,7 @@ app.get('/api/:make/:model/:year', function (req, res) {
     var cached = _memoryCache2.default.get(req.params.year);
 
     if (!cached) {
-        var trimsUrl = _config2.default.vehicleUrlStart + [req.params.make, req.params.model, req.params.year].join('/') + _config2.default.trimsUrlEnding + _config2.default.apiKey;
+        var trimsUrl = config.vehicleUrlStart + [req.params.make, req.params.model, req.params.year].join('/') + config.trimsUrlEnding + config.apiKey;
 
         _axios2.default.get(trimsUrl).then(function (response) {
 
@@ -83,9 +79,9 @@ app.get('/api/:trimId', function (req, res) {
     var cached = _memoryCache2.default.get(req.params.trimId);
 
     if (!cached) {
-        var specsUrl = _config2.default.vehicleUrlStart + 'styles/' + req.params.trimId + _config2.default.specsUrlEnding + _config2.default.apiKey;
+        var specsUrl = config.vehicleUrlStart + 'styles/' + req.params.trimId + config.specsUrlEnding + config.apiKey;
 
-        var equipmentUrl = _config2.default.vehicleUrlStart + 'styles/' + req.params.trimId + _config2.default.equipmentUrlEnding + _config2.default.apiKey;
+        var equipmentUrl = config.vehicleUrlStart + 'styles/' + req.params.trimId + config.equipmentUrlEnding + config.apiKey;
 
         var getSpecs = function getSpecs(specsUrl) {
             return _axios2.default.get(specsUrl);

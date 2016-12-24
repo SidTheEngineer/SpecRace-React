@@ -1,13 +1,13 @@
 import express from 'express'
 import axios from 'axios'
-import config from '../config'  // Path from folder where transpiled.
+//import config from '../config'  // Path from folder where transpiled.
 import cache from 'memory-cache'
 import path from 'path'
 
 const app = express()
 const PORT = process.env.PORT || 3001
-const apiKey = config.apiKey
-const vehicleUrlStart = config.vehicleUrlStart
+const apiKey = process.env.API_KEY //config.apiKey
+const vehicleUrlStart = process.env.VEHICLE_URL_START //config.vehicleUrlStart
 const makesUrl = vehicleUrlStart + 'makes?view=basic&fmt=json&api_key=' + apiKey
 
 const MINUTE = 60000            // ms -> minutes
