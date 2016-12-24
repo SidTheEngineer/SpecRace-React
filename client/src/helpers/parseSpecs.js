@@ -115,15 +115,27 @@ export let setWeightAndZeroToSixty = (equipment) => {
             let weightAndZeroToSixty = [NOT_AVAILABLE, NOT_AVAILABLE]
 
             // Set the weight and 0-60 if they're available.
-            weightAndZeroToSixty[0] = equipment.filter(object => object.name === WEIGHT)[0].value
-                ? equipment.filter(object => object.name === WEIGHT)[0].value + ' lbs'
-                : NOT_AVAILABLE
+            try {
+                weightAndZeroToSixty[0] = equipment.filter(object => object.name === WEIGHT)[0].value + ' lbs'
+            } catch(e) {
+                if(e instanceof TypeError) {
+                    console.log("Weight not available")
+                } else {
+                    console.log(e)
+                }
+            }
 
-            weightAndZeroToSixty[1] = equipment.filter(object => object.name === ZERO_TO_SIXTY)[0].value
-                ? equipment.filter(object => object.name === ZERO_TO_SIXTY)[0].value + ' seconds'
-                : NOT_AVAILABLE
+            try {
+                weightAndZeroToSixty[1] = equipment.filter(object => object.name === ZERO_TO_SIXTY)[0].value + ' seconds'
+            } catch(e) {
+                if(e instanceof TypeError) {
+                    console.log("0-60 not available")
+                } else {
+                    console.log(e)
+                }
+            }   
     }
-
+    
     return weightAndZeroToSixty
 }
 
