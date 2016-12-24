@@ -1,0 +1,129 @@
+'use strict';
+
+var _express = require('express');
+
+var _express2 = _interopRequireDefault(_express);
+
+var _axios = require('axios');
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _config = require('../config');
+
+var _config2 = _interopRequireDefault(_config);
+
+var _memoryCache = require('memory-cache');
+
+var _memoryCache2 = _interopRequireDefault(_memoryCache);
+
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Path from folder where transpiled.
+var app = (0, _express2.default)();
+var PORT = process.env.PORT || 3001;
+var apiKey = _config2.default.apiKey;
+var vehicleUrlStart = _config2.default.vehicleUrlStart;
+var makesUrl = vehicleUrlStart + 'makes?view=basic&fmt=json&api_key=' + apiKey;
+
+var MINUTE = 60000; // ms -> minutes
+var HOUR = MINUTE * 60; // ms -> minutes -> hours
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(_express2.default.static(_path2.default.join(__dirname, 'client/build')));
+}
+
+// Retrieve makes from Edmunds.
+app.get('/api/makes', function (req, res) {
+
+    var cached = _memoryCache2.default.get('makes');
+
+    if (!cached) {
+        _axios2.default.get(makesUrl).then(function (response) {
+            _memoryCache2.default.put('makes', response.data.makes, 12 * HOUR);
+            res.json(response.data.makes);
+        }).catch(function (error) {
+            res.send(error);
+        });
+    } else {
+        console.log('Fetching the cahced makes...');
+        res.json(cached);
+    }
+});
+
+// Retrieve trims from Edmunds based on selected make, model, and year.
+app.get('/api/:make/:model/:year', function (req, res) {
+
+    var cached = _memoryCache2.default.get(req.params.year);
+
+    if (!cached) {
+        var trimsUrl = _config2.default.vehicleUrlStart + [req.params.make, req.params.model, req.params.year].join('/') + _config2.default.trimsUrlEnding + _config2.default.apiKey;
+
+        _axios2.default.get(trimsUrl).then(function (response) {
+
+            _memoryCache2.default.put(req.params.year, response.data.styles, 5 * HOUR);
+
+            // Send trims to client as JSON.
+            res.json(response.data.styles);
+        }).catch(function (error) {
+            res.send(error);
+        });
+    } else {
+        console.log('Fetching the cached trims...');
+        res.json(cached);
+    }
+});
+
+// Retrieve specs and equipment via selected trim's ID.
+app.get('/api/:trimId', function (req, res) {
+
+    var cached = _memoryCache2.default.get(req.params.trimId);
+
+    if (!cached) {
+        var specsUrl = _config2.default.vehicleUrlStart + 'styles/' + req.params.trimId + _config2.default.specsUrlEnding + _config2.default.apiKey;
+
+        var equipmentUrl = _config2.default.vehicleUrlStart + 'styles/' + req.params.trimId + _config2.default.equipmentUrlEnding + _config2.default.apiKey;
+
+        var getSpecs = function getSpecs(specsUrl) {
+            return _axios2.default.get(specsUrl);
+        };
+        var getEquipment = function getEquipment(equipmentUrl) {
+            return _axios2.default.get(equipmentUrl);
+        };
+
+        _axios2.default.all([getSpecs(specsUrl), getEquipment(equipmentUrl)]).then(_axios2.default.spread(function (specs, equipment) {
+
+            var tempEquipment = void 0;
+
+            // Check if the vehicle has equipment available for it.
+            try {
+                tempEquipment = equipment.data.equipment[0].attributes;
+            } catch (error) {
+                tempEquipment = null;
+            }
+
+            // Cache the specs and equipment via trim ID.
+            _memoryCache2.default.put(req.params.trimId, {
+                specs: specs.data,
+                equipment: tempEquipment
+            }, 5 * HOUR);
+
+            res.send({
+                specs: specs.data,
+                equipment: tempEquipment
+            });
+        })).catch(function (error) {
+            res.send(error);
+        });
+    } else {
+        console.log('Fetching the cached specs...');
+        res.send(cached);
+    }
+});
+
+app.listen(PORT, function () {
+    console.log('------------------------------\n' + 'All systems are a GO on port ' + PORT + '\n------------------------------');
+});
