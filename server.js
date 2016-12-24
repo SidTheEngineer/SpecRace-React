@@ -14,6 +14,7 @@ const MINUTE = 60000            // ms -> minutes
 const HOUR = MINUTE * 60        // ms -> minutes -> hours
 
 if (process.env.NODE_ENV === 'production') {
+    console.log('serving static files')
   app.use(express.static(path.join(__dirname, 'client/build')));
 }
 
