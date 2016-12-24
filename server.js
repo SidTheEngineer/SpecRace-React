@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // Use JS for all 'other' routes.
 app.get('*', (req, res) => {
-    response.sendFile(path.resolve(process.env.PWD, '/client/build', 'index.html'))
+    res.sendFile(path.resolve(process.env.PWD, '/client/build', 'index.html'))
 })
 
 // Retrieve makes from Edmunds.
