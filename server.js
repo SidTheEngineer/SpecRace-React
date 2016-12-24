@@ -129,7 +129,7 @@ app.get('/api/:trimId', (req, res) => {
     
 })
 
-// Use JS for all 'other' routes.
+// Use JS for all 'other' routes (production).
 app.get('*', (req, res) => {
     res.sendFile('/app/client/build/index.html')
 })

@@ -107,8 +107,6 @@ export let setTransmission = (specs) => {
 
 export let setWeightAndZeroToSixty = (equipment) => {
 
-    // Initially not available.
-    let weightAndZeroToSixty = [NOT_AVAILABLE, NOT_AVAILABLE]
     const WEIGHT = 'Curb Weight'
     const ZERO_TO_SIXTY = 'Manufacturer 0 60mph Acceleration Time (seconds)'
 
@@ -116,9 +114,12 @@ export let setWeightAndZeroToSixty = (equipment) => {
 
             // Set the weight and 0-60 if they're available.
             weightAndZeroToSixty[0] = equipment.filter(object => object.name === WEIGHT)[0].value
-                + ' lbs'
+                ? equipment.filter(object => object.name === WEIGHT)[0].value + ' lbs'
+                : NOT_AVAILABLE
+
             weightAndZeroToSixty[1] = equipment.filter(object => object.name === ZERO_TO_SIXTY)[0].value
-                + ' seconds'
+                ? equipment.filter(object => object.name === ZERO_TO_SIXTY)[0].value + ' seconds'
+                : NOT_AVAILABLE
     }
 
     return weightAndZeroToSixty

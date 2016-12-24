@@ -123,7 +123,7 @@ app.get('/api/:trimId', function (req, res) {
     }
 });
 
-// Use JS for all 'other' routes.
+// Use JS for all 'other' routes (production).
 app.get('*', function (req, res) {
     res.sendFile('/app/client/build/index.html');
 });
