@@ -68,8 +68,8 @@ export let setHorsepowerAndTorque = (specs) => {
         : NOT_AVAILABLE
 
         return [
-            horsepower + ' @ ' + hpRpm,
-            torque + ' @ ' + tqRpm
+            horsepower + ' @ ' + hpRpm + ' RPM',
+            torque + ' @ ' + tqRpm + ' RPM'
         ]
 
     }
